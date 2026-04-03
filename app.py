@@ -7,6 +7,42 @@ from sklearn.pipeline import Pipeline
 
 st.set_page_config(page_title="Lagos Real Estate AI", page_icon="🇳🇬", layout="wide")
 
+import streamlit as st
+# ... your other imports (pandas, joblib, etc.)
+
+# 1. Set Page Config (if you haven't already)
+st.set_page_config(page_title="Lagos House Price Predictor", layout="wide")
+
+# 2. Add the "Desktop Mode" Hint for Mobile Users
+# This CSS checks if the screen width is less than 768px (standard mobile)
+st.markdown("""
+    <style>
+    @media (min-width: 768px) {
+        .mobile-hint {
+            display: none;
+        }
+    }
+    @media (max-width: 767px) {
+        .mobile-hint {
+            display: block;
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ffeeba;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+    </style>
+    <div class="mobile-hint">
+        💡 For the best experience with the map and layout, please switch to <b>Desktop Mode</b> in your browser settings.
+    </div>
+    """, unsafe_allow_html=True)
+
+# ... The rest of your app code (Title, Inputs, Model) follows here
+
 @st.cache_resource
 def load_and_train():
     df = pd.read_csv('Lagos_houses_prices.csv')
